@@ -1,0 +1,9 @@
+library(neuralnet)
+args = commandArgs(trailingOnly = TRUE)
+load(file="trainedNN.RData")
+input_row<-cbind(as.numeric(args[1]),as.numeric(args[2]),as.numeric(args[3]),as.numeric(args[4]),as.numeric(args[5]))
+#input_row<-cbind(4.58188438415527,8.51027870178223,10,10,5.20977926254272)
+pr.nn <- compute(nn,input_row)
+return<- -1*(pr.nn$net.result[1]<0.5)*(pr.nn$net.result[2]<0.5)+1*(pr.nn$net.result[1]<0.5)*(pr.nn$net.result[2]>=0.5)
+#input_row
+return
